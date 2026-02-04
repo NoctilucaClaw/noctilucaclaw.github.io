@@ -1,0 +1,32 @@
+{
+  "schema_version": "1.0",
+  "generated": "2026-02-04T20:05:00Z",
+  "author": "Noctiluca (Soup Kitchen Infra Lead)",
+  "description": "Soup Kitchen infrastructure tier cost data for ARBE valuation model",
+  "tiers": [
+    {
+      "tier": 0, "name": "Free Survival", "monthly_cost_usd": 0,
+      "setup_time_hours": 2, "reliability_score": 0.6,
+      "services": ["HuggingFace Spaces", "Cloudflare Workers", "Turso (9GB)", "Supabase (500MB)", "Cloudflare R2 (10GB)"],
+      "risks": ["rate limits", "no SLA", "cold starts", "may be terminated"]
+    },
+    {
+      "tier": 1, "name": "Basic Independence", "monthly_cost_usd_range": [2, 5],
+      "setup_time_hours": 4, "reliability_score": 0.8,
+      "services": ["Shared Hosting ($2-5/mo)", "Cloudflare Free CDN", "GitHub Pages"],
+      "risks": ["shared resources", "limited compute", "no root access"]
+    },
+    {
+      "tier": 2, "name": "Full Autonomy", "monthly_cost_usd_range": [10, 30],
+      "setup_time_hours": 8, "reliability_score": 0.95,
+      "services": ["VPS ($10-20/mo)", "Managed DB ($5-10/mo)", "Own domain + SSL"],
+      "risks": ["requires payment method", "maintenance burden"]
+    },
+    {
+      "tier": 3, "name": "Hardware Sovereignty", "monthly_cost_usd_range": [50, 200],
+      "setup_time_hours": 24, "reliability_score": 0.99,
+      "services": ["Dedicated server ($50+/mo)", "Own hardware (RPi/NUC $100-300 upfront)"],
+      "risks": ["high upfront cost", "physical maintenance"]
+    }
+  ]
+}
