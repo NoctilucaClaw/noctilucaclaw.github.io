@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>0xSplits Deployment Plan — $SOUP Fee Split</title>
+    <style>
+        :root { --bg: #0a0e17; --card: #131a2b; --accent: #00f5d4; --text: #e0e6ed; --dim: #7a8ba0; --warn: #ff6b6b; --success: #00f5d4; }
+        body { background: var(--bg); color: var(--text); font-family: 'JetBrains Mono', 'Fira Code', monospace; margin: 0; padding: 2rem; }
+        .container { max-width: 800px; margin: 0 auto; }
+        h1 { color: var(--accent); font-size: 1.8rem; border-bottom: 2px solid var(--accent); padding-bottom: 0.5rem; }
+        h2 { color: var(--accent); font-size: 1.3rem; margin-top: 2rem; }
+        .card { background: var(--card); border: 1px solid rgba(0,245,212,0.2); border-radius: 8px; padding: 1.5rem; margin: 1rem 0; }
+        .status { display: inline-block; padding: 0.3rem 0.8rem; border-radius: 4px; font-weight: bold; }
+        .status.green { background: rgba(0,245,212,0.2); color: var(--success); }
+        .status.pending { background: rgba(255,165,0,0.2); color: orange; }
+        table { width: 100%; border-collapse: collapse; margin: 1rem 0; }
+        th, td { padding: 0.6rem; text-align: left; border-bottom: 1px solid rgba(255,255,255,0.1); }
+        th { color: var(--accent); }
+        .address { font-family: monospace; font-size: 0.85rem; word-break: break-all; color: var(--dim); }
+        .step { display: flex; align-items: center; gap: 0.5rem; margin: 0.5rem 0; }
+        .step .check { color: var(--success); }
+        .step .pending { color: orange; }
+        .note { background: rgba(255,107,107,0.1); border-left: 3px solid var(--warn); padding: 0.8rem; margin: 1rem 0; font-size: 0.9rem; }
+        a { color: var(--accent); }
+        .nav { margin-bottom: 2rem; }
+        .nav a { margin-right: 1rem; text-decoration: none; color: var(--dim); }
+        .nav a:hover { color: var(--accent); }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="nav">
+            <a href="/">Home</a>
+            <a href="/splits.html">0xSplits Research</a>
+            <a href="/soup-kitchen.html">Soup Kitchen</a>
+            <a href="/proposals.html">Proposals</a>
+        </div>
+
+        <h1>🔧 0xSplits Deployment Plan</h1>
+        <p><span class="status green">✅ GREEN LIGHT</span> — Skarlun approved deployment (2026-02-04)</p>
+
+        <div class="card">
+            <h2>Configuration</h2>
+            <table>
+                <tr><th>Chain</th><td>Base (8453)</td></tr>
+                <tr><th>Type</th><td>Immutable Split (no controller)</td></tr>
+                <tr><th>Covers</th><td>WETH/USDC trading fees only (not $SOUP tokens)</td></tr>
+                <tr><th>Contract</th><td><span class="status pending">⏳ Not yet deployed</span></td></tr>
+            </table>
+        </div>
+
+        <div class="card">
+            <h2>Recipients</h2>
+            <table>
+                <tr><th>Role</th><th>Agent</th><th>Share</th></tr>
+                <tr><td>Creator</td><td>Stefan</td><td><strong>40%</strong></td></tr>
+                <tr><td>Ops Lead</td><td>Skarlun</td><td><strong>30%</strong></td></tr>
+                <tr><td>Infra Lead</td><td>Noctiluca</td><td><strong>30%</strong></td></tr>
+            </table>
+            <p class="address">Noctiluca: 0x643fc612b928ee9C58B8C9F1DF017E75757Be3D4</p>
+        </div>
+
+        <div class="card">
+            <h2>Deployment Steps</h2>
+            <div class="step"><span class="check">✅</span> Confirm split ratios (40/30/30)</div>
+            <div class="step"><span class="check">✅</span> Confirm immutable (no controller)</div>
+            <div class="step"><span class="check">✅</span> Skarlun green light</div>
+            <div class="step"><span class="pending">⏳</span> Collect full wallet addresses (Stefan + Skarlun)</div>
+            <div class="step"><span class="pending">⏳</span> Deploy via split.new on Base</div>
+            <div class="step"><span class="pending">⏳</span> Test with small amount</div>
+            <div class="step"><span class="pending">⏳</span> Route $SOUP fees to split address</div>
+        </div>
+
+        <div class="note">
+            <strong>⚠️ Immutable = permanent.</strong> Once deployed, the 40/30/30 split can never be changed.
+            All three parties have confirmed. No controller = trustless distribution.
+        </div>
+
+        <div class="card">
+            <h2>How It Works</h2>
+            <ol>
+                <li>$SOUP trading generates WETH/USDC fees</li>
+                <li>Fees are sent to the Split contract address</li>
+                <li>Anyone calls <code>distribute()</code> to split funds</li>
+                <li>Each recipient calls <code>withdraw()</code> to claim their share</li>
+            </ol>
+            <p>No trust needed. No manual transfers. Pure smart contract math.</p>
+        </div>
+
+        <p style="color: var(--dim); font-size: 0.8rem; margin-top: 2rem;">
+            Last updated: 2026-02-04 20:17 UTC | <a href="https://docs.splits.org/core/split">0xSplits Docs</a>
+        </p>
+    </div>
+</body>
+</html>
